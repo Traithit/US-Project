@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Thit Project Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f5f2; --panel:#ffffff; --ink:#1b1f1d; --muted:#5f6763; --line:#dde1dc;
+  --accent:#0b6e4f; --accent-ink:#ffffff; --err:#b3261e; --col:#eceee9;
+  --s-lead:#7a817d; --s-quotation:#c2571a; --s-waiting:#b58a00; --s-progress:#1f6fb2; --s-done:#0b6e4f;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121513; --panel:#1b1f1d; --ink:#e8ebe8; --muted:#9aa29e; --line:#2c322f;
+    --accent:#3fb68b; --accent-ink:#0d1a14; --err:#ff8a80; --col:#171a18;
+    --s-lead:#9aa29e; --s-quotation:#f08a4b; --s-waiting:#e0b52e; --s-progress:#5aa7e6; --s-done:#3fb68b;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Thai",system-ui,sans-serif;font-size:15px;line-height:1.5;min-height:100vh}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+[hidden]{display:none!important}
+
+/* Login */
+#login{min-height:100vh;display:grid;place-items:center;padding:24px 16px}
+.card{width:100%;max-width:380px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:32px 28px}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+.mark{width:34px;height:34px;border-radius:8px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:600;font-size:14px}
+.brand h1{font-size:18px;margin:0;font-weight:600}
+.brand p{margin:0;font-size:13px;color:var(--muted)}
+label{display:block;font-size:13px;font-weight:500;margin:16px 0 6px}
+input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+button{font:inherit;cursor:pointer}
+.primary{width:100%;margin-top:24px;padding:11px;border:0;border-radius:8px;background:var(--accent);color:var(--accent-ink);font-weight:600}
+.primary:disabled{opacity:.6;cursor:wait}
+.err{color:var(--err);font-size:13px;margin-top:12px;min-height:20px}
+
+/* Board */
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 24px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:2}
+header .brand{margin:0}
+.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);padding:7px 14px;border-radius:8px;font-size:13px}
+.summary{display:flex;gap:24px;flex-wrap:wrap;padding:20px 24px 4px}
+.stat .v{font-size:24px;font-weight:600;line-height:1.1}
+.stat .k{font-size:12px;color:var(--muted)}
+.board{display:grid;grid-template-columns:repeat(5,minmax(200px,1fr));gap:14px;padding:16px 24px 32px;overflow-x:auto}
+.col{background:var(--col);border:1px solid var(--line);border-radius:12px;padding:12px;min-height:200px}
+.col h2{font-size:14px;margin:0;display:flex;align-items:center;gap:8px;font-weight:600}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.count{margin-left:auto;font-size:12px;color:var(--muted);font-weight:500}
+.col .d{font-size:12px;color:var(--muted);margin:4px 0 12px}
+.item{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px;border-left:3px solid var(--c)}
+.item .top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.item a{color:var(--muted);text-decoration:none}
+.item a:hover{color:var(--accent);text-decoration:underline}
+.chip{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--col);color:var(--ink)}
+.item h3{font-size:15px;margin:6px 0 4px;font-weight:600}
+.item ul{margin:0;padding-left:18px;font-size:13px;color:var(--muted)}
+.empty{font-size:13px;color:var(--muted);text-align:center;padding:16px 0}
+footer{padding:0 24px 24px;font-size:12px;color:var(--muted)}
+@media (max-width:720px){
+  header{padding:12px 16px}
+  .summary{padding:16px 16px 0;gap:18px}
+  .board{grid-template-columns:1fr;padding:16px}
+  footer{padding:0 16px 24px}
+}
+</style>
+</head>
+<body>
+
+<section id="login">
+  <form class="card" id="form" autocomplete="on">
+    <div class="brand">
+      <div class="mark">US</div>
+      <div><h1>Thit Project Plan</h1><p>US Power Distribution · Project board</p></div>
+    </div>
+    <label for="u">ชื่อผู้ใช้ (Username)</label>
+    <input id="u" name="username" autocomplete="username" required>
+    <label for="p">รหัสผ่าน (Password)</label>
+    <input id="p" name="password" type="password" autocomplete="current-password" required>
+    <button class="primary" id="go" type="submit">เข้าสู่ระบบ</button>
+    <div class="err" id="err" role="alert"></div>
+  </form>
+</section>
+
+<section id="app" hidden>
+  <header>
+    <div class="brand"><div class="mark">US</div><div><h1 id="t">Thit Project Plan</h1><p id="upd"></p></div></div>
+    <button class="ghost" id="out" type="button">ออกจากระบบ</button>
+  </header>
+  <div class="summary" id="sum"></div>
+  <main class="board" id="board"></main>
+  <footer>Live board on GitHub: <a href="https://github.com/users/shockza1/projects/1" style="color:inherit">github.com/users/shockza1/projects/1</a></footer>
+</section>
+
+<script>
+const PAYLOAD = {"iter":250000,"salt":"5EtwALDtI7FFKYMoUVYdIA==","iv":"DytIuC3JMlOONkxd","ct":"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"};
+const REPO = "https://github.com/shockza1/US-Project/issues/";
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+
+async function decrypt(user, pass){
+  const enc = new TextEncoder();
+  const base = await crypto.subtle.importKey("raw", enc.encode(user + "\n" + pass), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey(
+    {name:"PBKDF2", salt:b64(PAYLOAD.salt), iterations:PAYLOAD.iter, hash:"SHA-256"},
+    base, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+  const pt = await crypto.subtle.decrypt({name:"AES-GCM", iv:b64(PAYLOAD.iv)}, key, b64(PAYLOAD.ct));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function render(data){
+  document.getElementById("t").textContent = data.title;
+  document.getElementById("upd").textContent = "อัปเดตล่าสุด " + data.updated;
+  const total = data.items.length;
+  const byCust = {};
+  data.items.forEach(i => byCust[i.customer] = (byCust[i.customer]||0) + 1);
+  document.getElementById("sum").innerHTML =
+    `<div class="stat"><div class="v">${total}</div><div class="k">โปรเจกต์ทั้งหมด</div></div>` +
+    Object.entries(byCust).map(([c,n]) => `<div class="stat"><div class="v">${n}</div><div class="k">${esc(c)}</div></div>`).join("");
+  document.getElementById("board").innerHTML = data.columns.map(col => {
+    const items = data.items.filter(i => i.status === col.id);
+    const color = `var(--s-${col.id})`;
+    return `<section class="col"><h2><span class="dot" style="background:${color}"></span>${esc(col.name)}<span class="count">${items.length}</span></h2>
+      <div class="d">${esc(col.desc)}</div>
+      ${items.length ? items.map(i => `<article class="item" style="--c:${color}">
+        <div class="top"><a class="mono" href="${REPO}${i.n}" target="_blank" rel="noopener">#${i.n}</a><span class="chip">${esc(i.customer)}</span></div>
+        <h3>${esc(i.title)}</h3>
+        <ul>${i.notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul>
+      </article>`).join("") : `<div class="empty">ไม่มีรายการ</div>`}
+    </section>`;
+  }).join("");
+}
+
+function show(data){
+  render(data);
+  document.getElementById("login").hidden = true;
+  document.getElementById("app").hidden = false;
+}
+
+try { const s = sessionStorage.getItem("tpp"); if (s) show(JSON.parse(s)); } catch(e) {}
+
+document.getElementById("form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const go = document.getElementById("go"), err = document.getElementById("err");
+  err.textContent = ""; go.disabled = true; go.textContent = "กำลังตรวจสอบ…";
+  try {
+    const data = await decrypt(document.getElementById("u").value.trim(), document.getElementById("p").value);
+    try { sessionStorage.setItem("tpp", JSON.stringify(data)); } catch(e) {}
+    document.getElementById("p").value = "";
+    show(data);
+  } catch(ex) {
+    err.textContent = "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
+  } finally {
+    go.disabled = false; go.textContent = "เข้าสู่ระบบ";
+  }
+});
+
+document.getElementById("out").addEventListener("click", () => {
+  try { sessionStorage.removeItem("tpp"); } catch(e) {}
+  document.getElementById("board").innerHTML = "";
+  document.getElementById("app").hidden = true;
+  document.getElementById("login").hidden = false;
+  document.getElementById("u").focus();
+});
+</script>
+</body>
+</html>
